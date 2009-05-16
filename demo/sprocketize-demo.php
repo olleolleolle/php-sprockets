@@ -5,8 +5,22 @@ $filePath = preg_replace('/\?.*/', '', $_SERVER['REQUEST_URI']);
 
 // prepare sprocket
 $sprocket = new Sprocket($filePath, array(
-	'baseUri' => '/repos/php-sprockets', 
+	'baseUri' => '/php-sprockets/demo', 
 	'debugMode' => true
 ));
-echo $sprocket->render($return = true);
+
+// change base folder based on extension
+switch ($sprocket->fileExt) 
+{
+	case 'css':
+		$sprocket->setContentType('text/css')->setBaseFolder('/css');
+		break;
+	
+	default: case 'js':
+		$sprocket->setBaseFolder('/js');
+		break;
+}
+
+// tada!
+$sprocket->render();
 ?>

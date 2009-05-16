@@ -1,0 +1,8 @@
+//= require "base"
+//= require "reset"
+/**
+ * Example CSS File
+ */
+a { color: <%= LINK_COLOR %>; }
+a:hover { color: <%= LINK_HOVER_COLOR %>; }
+body { background: <%= BACKGROUND %>; }

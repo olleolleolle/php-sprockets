@@ -12,7 +12,8 @@ Major difference between the original port and this fork are:
 * Instead of YML this fork uses INI files for providing constants.
 * Easy to extend due more abstraction, setters and a array based option interface
 * Seperate render stage (with autoRender option to mimic the original render-on-construct).
-* Fully documented sourcecode with demo
+* Also works with other files, like CSS and whatever you want to concat.. (see demo)
+* Fully documented sourcecode
 
 h3. Installation
 
