@@ -29,6 +29,11 @@ Because of this you do not have to initialize any classes in your app and sprock
 For constants you can use either @<%=@ or @<?=@ this is to make the syntax closer to PHPs but still 
 keep compatibility with original sprocket files.
 
+NEW: This fork of sprockets tends to be quiet different. Although it is generally the same, the feature 
+to parse any text file is new. I think that's a good addition and a very obvious one too. Along with 
+existing PHP formatters (jsmin, cssmin, etc..) and caching this can become very powerful for processing
+your assets. - So sprockets now can deal with CSS, too. Yay!
+
 h3. Interface
 
 <pre><code>
