@@ -238,7 +238,7 @@ class Sprocket
 	 * @param boolean $enabled
 	 * @return object self
 	 */
-	function setDebug($enabled = true) {
+	function setDebugMode($enabled = true) {
 		$this->debugMode = $enabled;
 		return $this;		
 	}
