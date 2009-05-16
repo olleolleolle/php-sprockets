@@ -28,6 +28,33 @@ Because of this you do not have to initialize any classes in your app and sprock
 For constants you can use either @<%=@ or @<?=@ this is to make the syntax closer to PHPs but still 
 keep compatibility with original sprocket files.
 
+h3. Interface
+
+<pre><code>
+$sprocket = new Sprocket($filePath, array(    
+	'contentType' => 'application/x-javascript',
+	'baseUri' => '/my/site/',
+	'baseJs' => '/js',
+	'assetFolder' => '..',
+	'debugMode' => false,
+	'autoRender' => false
+));
+</code></pre>
+
+If @debugMode@ is enabled then resulting files aren't cached. If @autoRender@ is enabled the file will
+be echoed upon construct. If @contentType@ is false instead of a string the content-type is not sent.
+
+If you disabled autoRender (default) then you need to call the @render()@ after creating the instance.
+If you pass @false@ to the render method, @render()@ will not echo the javascript and return it as string instead.
+
+You can also ignore the second constructor parameter and use setters instead. Setters always return the
+object itself so you can chain the commands, if you like. 
+
+Example: @$sprocket->setDebugMode(true)->setAutoRender(false)->render()@
+
+
+
+
 h3. Credits
 
 All thanks to Stuart for porting sprockets! I just modified it a bit. :)
