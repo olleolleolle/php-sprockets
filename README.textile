@@ -58,15 +58,36 @@ be echoed upon construct. If @contentType@ is false instead of a string the cont
 If you disabled autoRender (default) then you need to call the @render()@ after creating the instance.
 If you pass @true@ to the render method, @render()@ will not echo the javascript and return it as string instead.
 
-You can also ignore the second constructor parameter and use setters. Setters always return the
-object itself so you can chain the commands, if you like. 
+You can also ignore the second constructor parameter and use setters. Setters always return the object itself 
+so you can chain the commands: @$sprocket->setDebugMode(true)->setAutoRender(false)->render()@ and so on..
 
-Example: @$sprocket->setDebugMode(true)->setAutoRender(false)->render()@ and so on..
+h3. Creating new commands
 
-Feel free to extend the class. This allows you to define a custom fileNotFound handler or overwrite the
-file caching mechanism, among other things.
+To create new commands like "require" and "provide" all you need to do is to create a new class in
+the "commands" folder under "lib". For example, we want to create a "flag" command that somehow
+modifies the output, like Stuart proposed. 
 
-There is probably more cool stuff, but i am still working on this.
+To add this we need to create a class called "SprocketCommandFlag" which extends "SprocketCommand".
+Any command class needs to define a @exec()@ method. This method receives two parameters which we
+can use to do stuff. SprocketCommand also has the Sprocket Object as property by design, so we can
+use the current instance to get more info about the current job.
+ 
+<pre><code>
+// flag.php
+class SprocketCommandFlag extends SprocketCommand {
+    function exec($param, $context) {
+        // do something
+    }
+}
+</code></pre>
+
+This is all there is to it. We can now perform @//= flag "something"@ in our source files and the
+exec-method is called. In the event that we want to replace the sprocket command (//= ...) with a 
+return value from the exec method (formatter, maybe..), the return value needs to be a string.
+
+The exec method doesn't need to return anything. You can just use it to modify the sprocket object
+if you want to.
+
 
 h3. Credits
 
