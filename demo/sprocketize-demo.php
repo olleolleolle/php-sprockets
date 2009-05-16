@@ -5,7 +5,7 @@ $filePath = preg_replace('/\?.*/', '', $_SERVER['REQUEST_URI']);
 
 // prepare sprocket
 $sprocket = new Sprocket($filePath, array(
-	'baseUri' => '/php-sprockets/demo', 
+	'baseUri' => '/php-sprockets', 
 	'debugMode' => true
 ));
 
