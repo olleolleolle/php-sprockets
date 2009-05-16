@@ -1,7 +1,9 @@
-//= require "reset"
+//= require "reset" minify
 //= require "base"
 /**
  * Example CSS File
+ *
+ * note the "minify" option in the require statement
  */
 a { color: <%= LINK_COLOR %>; }
 a:hover { color: <%= LINK_HOVER_COLOR %>; }

@@ -1,10 +1,12 @@
 //= require "object"
 //= require "array"
-//= require "functions"
+//= require "functions" minify
 
 /**
  * Example Main Javacript File
- *
+ * 
+ * note the "minify" option in the require statement
+ *  
  * @author <%= DEMO_AUTHOR %>
  * @version <%= DEMO_VERSION %>
  */

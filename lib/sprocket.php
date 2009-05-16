@@ -7,6 +7,11 @@
  */
 require_once('sprocket_command.php');
 
+// CSS Minify 
+define('MINIFY_CSS', 'cssmin-v1.0.1.b3.php');
+// JS Minify
+define('MINIFY_JS', 'jsmin-1.1.1.php');
+
 /**
  * Sprocket Class
  * 

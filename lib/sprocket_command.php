@@ -26,4 +26,17 @@ class SprocketCommand {
 		$this->Sprocket = $sprocket;
 	}
 	
+	/**
+	 * Return filename
+	 */
+	function getFileName($context, $param) {
+		return basename($context.'/'.$param.'.'.$this->Sprocket->fileExt);
+	}
+	
+	/**
+	 * Return filecontext
+	 */
+	function getFileContext($context, $param) {
+		return dirname($context.'/'.$param.'.'.$this->Sprocket->fileExt);
+	}
 }
