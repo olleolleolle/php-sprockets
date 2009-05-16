@@ -110,8 +110,10 @@ class Sprocket
 			if ($this->commandExists($commandName)) {
 				$param = trim($matches[2][$key]);			
 				$command = $this->requireCommand($commandName);
-				
-				$source = str_replace($commandRaw, $command->exec($param, $context), $source);
+				$commandResult = $command->exec($param, $context);
+				if (is_string($commandResult)) {
+					$source = str_replace($commandRaw, $commandResult, $source);
+				}
 			}
 		}
 		
