@@ -67,7 +67,10 @@ class Sprocket
 			file_put_contents($this->filePath.'.cache', $this->_parsedSource);
 		}
 		
-		header ("Content-Type: {$this->contentType}");
+		if ($this->contentType) {
+			header ("Content-Type: {$this->contentType}");
+		}
+			
 		echo $this->_parsedSource;
 	}
 	
