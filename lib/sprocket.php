@@ -48,7 +48,7 @@ class Sprocket
 	 * Return rendered version of current js file.
 	 * @return string
 	 */
-	function render() {
+	function render($return = false) {
 		if (!$this->debugMode) {
 			if ($this->isCached()) {
 				$this->_parsedSource = $this->readCache();
@@ -70,7 +70,11 @@ class Sprocket
 		if ($this->contentType) {
 			header ("Content-Type: {$this->contentType}");
 		}
-			
+		
+		if ($return) {
+			return $this->_parsedSource;
+		}
+		
 		echo $this->_parsedSource;
 	}
 	
