@@ -13,6 +13,7 @@ Major difference between the original port and this fork are:
 * Easy to extend due more abstraction, setters and a array based option interface
 * Seperate render stage (with autoRender option to mimic the original render-on-construct).
 * Also works with other files, like CSS and whatever you want to concat.. (see demo)
+* Selective minification for JS and CSS out of the box. Just add "minify" (see demo files)
 * Fully documented sourcecode
 
 h3. Installation
@@ -33,6 +34,11 @@ NEW: This fork of sprockets tends to be quiet different. Although it is generall
 to parse any text file is new. I think that's a good addition and a very obvious one too. Along with 
 existing PHP formatters (jsmin, cssmin, etc..) and caching this can become very powerful for processing
 your assets. - So sprockets now can deal with CSS, too. Yay!
+
+NEW: Powered by CSSmin and JSmin you can now minify your sourcecode while you require it in your 
+sprocket files. All it takes is to add a "minify" to the end of the require statement. 
+Example: @//= require "application" minify@ and the application.js (or .css) is minified
+
 
 h3. Interface
 
@@ -68,4 +74,9 @@ h3. Credits
 All thanks to Stuart for porting sprockets! I just modified it a bit. :)
 Special Thanks to Sam Stephenson for the original idea.
 
+Big up to Joe Scylla for CSSmin and Ryan Grove for JSmin. Their code 
+power the new and fancy "minify" option.
 
+h3. Maintainer
+
+Kjell Bublitz - m3nt0r.de (at) gmail.com
