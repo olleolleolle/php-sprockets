@@ -8,5 +8,5 @@ $sprocket = new Sprocket($filePath, array(
 	'baseUri' => '/repos/php-sprockets', 
 	'debugMode' => true
 ));
-$sprocket->render();
+echo $sprocket->render($return = true);
 ?>

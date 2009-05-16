@@ -45,15 +45,17 @@ If @debugMode@ is enabled then resulting files aren't cached. If @autoRender@ is
 be echoed upon construct. If @contentType@ is false instead of a string the content-type is not sent.
 
 If you disabled autoRender (default) then you need to call the @render()@ after creating the instance.
-If you pass @false@ to the render method, @render()@ will not echo the javascript and return it as string instead.
+If you pass @true@ to the render method, @render()@ will not echo the javascript and return it as string instead.
 
-You can also ignore the second constructor parameter and use setters instead. Setters always return the
+You can also ignore the second constructor parameter and use setters. Setters always return the
 object itself so you can chain the commands, if you like. 
 
-Example: @$sprocket->setDebugMode(true)->setAutoRender(false)->render()@
+Example: @$sprocket->setDebugMode(true)->setAutoRender(false)->render()@ and so on..
 
+Feel free to extend the class. This allows you to define a custom fileNotFound handler or overwrite the
+file caching mechanism, among other things.
 
-
+There is probably more cool stuff, but i am still working on this.
 
 h3. Credits
 

@@ -25,22 +25,23 @@ class Sprocket
 		
 		$options = array_merge(array(
 			'baseUri' => '/php-sprockets',
-			'baseJs' => '/js',
+			'baseFolder' => '/js',
 			'assetFolder' => '..',
 			'debugMode' => false,
 			'autoRender' => false,
-			'contentType' => 'application/x-javascript'
+			'contentType' => 'application/x-javascript',
 		), $options); 
 		
 		extract($options, EXTR_OVERWRITE);
 		
 		$this->setBaseUri($baseUri);
-		$this->setBaseJs($baseJs);
+		$this->setBaseFolder($baseFolder);
 		$this->setAssetFolder($assetFolder);
-		$this->setDebug($debugMode);
-		$this->setFilePath($file);
+		$this->setDebugMode($debugMode);
 		$this->setContentType($contentType);
-		
+
+		$this->setFilePath($file);
+				
 		if ($autoRender) $this->render();
 	}
 	
@@ -60,7 +61,7 @@ class Sprocket
 			$file = basename($this->filePath);
 			$context = dirname($this->filePath);
 			
-			$this->_parsedSource = $this->parseJS($file, $context);
+			$this->_parsedSource = $this->parseFile($file, $context);
 		}
 		
 		if (!$this->debugMode && !$this->_fromCache) {
@@ -89,14 +90,14 @@ class Sprocket
 	 * @param string $context Directory
 	 * @return string Sprocketized Source
 	 */
-	function parseJS($file, $context) {
-		if (!is_file($context.'/'.$file)) 
-			$this->fileNotFound();
-	
-		$js = file_get_contents($context.'/'.$file);
+	function parseFile($file, $context) {		
+		if (!is_file(realpath($this->filePath))) 
+			$this->fileNotFound();				
+		
+		$source = file_get_contents($context.'/'.$file);
 				
 		// Parse Commands
-		preg_match_all('/\/\/= ([a-z]+) ([^\n]+)/', $js, $matches);
+		preg_match_all('/\/\/= ([a-z]+) ([^\n]+)/', $source, $matches);
 		foreach($matches[0] as $key => $match) {
 			$commandRaw = $matches[0][$key];
 			$commandName = $matches[1][$key];
@@ -105,7 +106,7 @@ class Sprocket
 				$param = trim($matches[2][$key]);			
 				$command = $this->requireCommand($commandName);
 				
-				$js = str_replace($commandRaw, $command->exec($param, $context), $js);
+				$source = str_replace($commandRaw, $command->exec($param, $context), $source);
 			}
 		}
 		
@@ -116,13 +117,13 @@ class Sprocket
 				$this->parseConstants($constFile);
 			}
 			if (count($this->_constants)) {
-				$js = $this->replaceConstants($js);				
+				$source = $this->replaceConstants($source);				
 			}
 		}		
 		
 		$this->stripComments();		
 		
-		return $js;
+		return $source;
 	}	
 	
 	/**
@@ -228,6 +229,7 @@ class Sprocket
 	 */
 	function setFilePath($filePath) {
 		$this->filePath = str_replace($this->baseUri, '..', $filePath);
+		$this->fileExt = array_pop(explode('.', $this->filePath));
 		return $this;
 	}
 	
@@ -255,13 +257,13 @@ class Sprocket
 	}
 	
 	/**
-	 * Set baseJs
+	 * Set baseFolder
 	 *
-	 * @param string $baseJs
+	 * @param string $baseFolder
 	 * @return object self
 	 */
-	function setBaseJs($baseJs) {
-		$this->baseJs = $baseJs;
+	function setBaseFolder($baseFolder) {
+		$this->baseFolder = $baseFolder;
 		return $this;		
 	}
 	
@@ -276,6 +278,12 @@ class Sprocket
 		return $this;		
 	}
 	
+	/**
+	 * Set contentType
+	 *
+	 * @param string $baseUri
+	 * @return object self
+	 */
 	function setContentType($contentType) {
 		$this->contentType = $contentType;
 		return $this;
@@ -291,13 +299,19 @@ class Sprocket
 	 * Base JS - Relative location of the javascript folder
 	 * @var string
 	 */
-	var $baseJs = '';
+	var $baseFolder = '';
 	
 	/**
-	 * File Path - Current JS file to parse
+	 * File Path - Current file to parse
 	 * @var string
 	 */
 	var $filePath = '';
+	
+	/**
+	 * File Extension
+	 * @var string
+	 */
+	var $fileExt = 'js';
 	
 	/**
 	 * Assets - Relative location of the assets folder

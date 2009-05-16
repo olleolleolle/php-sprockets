@@ -10,8 +10,8 @@
  * SprocketCommand : Provide Class
  * 
  */
-class SprocketCommandProvide extends SprocketCommand {
-	
+class SprocketCommandProvide extends SprocketCommand 
+{
 	/**
 	 * Command Exec
 	 */	
