@@ -83,6 +83,9 @@ class Sprocket
 	 * @return string Sprocketized Source
 	 */
 	function parseJS($file, $context) {
+		if (!is_file($context.'/'.$file)) 
+			$this->fileNotFound();
+	
 		$js = file_get_contents($context.'/'.$file);
 				
 		// Parse Commands
@@ -198,6 +201,16 @@ class Sprocket
 	 */
 	function writeCache() {
 		return file_put_contents($this->filePath.'.cache', $this->_parsedSource);
+	}
+	
+	/**
+	 * File Not Found - Sends a 404 Header if the file does not exist.
+	 * Just overwrite this if you want to do something else. 
+	 */ 
+	function fileNotFound() {
+		header("HTTP/1.0 404 Not Found"); 
+		echo '<h1>404 - File Not Found</h1>';
+		exit;
 	}
 	
 	/**
