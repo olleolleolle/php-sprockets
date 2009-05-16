@@ -1,3 +1,2 @@
 RewriteEngine On
-
-RewriteRule \.js$ lib/phpsprocket.php [QSA]
+RewriteRule \.js$ sprocketize.php [QSA]
