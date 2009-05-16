@@ -3,9 +3,9 @@ h1. PHP Sprocket
 PHP Sprocket is a port of Sprockets - the ruby library for Javascript dependency management and concatenation. 
 For syntax instructions visit http://getsprockets.org/installation_and_usage.
 
-This fork is rewrite of the the original PHPSprockets by Stuart Loxton.
+This fork is a rewrite of the the original PHPSprockets by Stuart Loxton.
  
-Major difference between the original port and this fork are:
+Major differences between the original port and this fork are:
 
 * The main class file has been renamed to "Sprocket"
 * Commands are now classes. It is easy to extend Sprocket with new commands.
@@ -30,12 +30,11 @@ Because of this you do not have to initialize any classes in your app and sprock
 For constants you can use either @<%=@ or @<?=@ this is to make the syntax closer to PHPs but still 
 keep compatibility with original sprocket files.
 
-NEW: This fork of sprockets tends to be quiet different. Although it is generally the same, the feature 
-to parse any text file is new. I think that's a good addition and a very obvious one too. Along with 
-existing PHP formatters (jsmin, cssmin, etc..) and caching this can become very powerful for processing
-your assets. - So sprockets now can deal with CSS, too. Yay!
+**NEW:** This fork of sprockets tends to be quiet different. Although it is generally the same, the feature 
+to parse any text file is new. I think that's a good addition and a very obvious one too.  So sprockets 
+now can deal with CSS if you like.
 
-NEW: Powered by CSSmin and JSmin you can now minify your sourcecode while you require it in your 
+**NEW:** Powered by CSSmin and JSmin you can now minify your sourcecode while you require it in your 
 sprocket files. All it takes is to add a "minify" to the end of the require statement. 
 Example: @//= require "application" minify@ and the application.js (or .css) is minified
 
