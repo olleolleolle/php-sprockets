@@ -16,9 +16,9 @@ Major difference between the original port and this fork are:
 
 h3. Installation
 
-# Copy or modify the sprocketize.php and .htaccess to your webroot.
-# Modify the require path to point to the 'lib' directory if necessary.
-# Enjoy clean JavaScript
+# I would start with checking the demo. It contains the basics 
+# Copy/Modify the .htaccess and sprocketize.php to your webroot.
+# Modify the 'lib/sprocket.php' require-path to your needs.
 
 h3. Changes to the original sprockets.
 
@@ -28,9 +28,9 @@ Because of this you do not have to initialize any classes in your app and sprock
 For constants you can use either @<%=@ or @<?=@ this is to make the syntax closer to PHPs but still 
 keep compatibility with original sprocket files.
 
-h3. Linkage
+h3. Credits
 
-Forked from: http://github.com/stuartloxton/php-sprockets/
-Original Author: Stuart Loxton - http://stuartloxton.com/
+All thanks to Stuart for porting sprockets! I just modified it a bit. :)
+Special Thanks to Sam Stephenson for the original idea.
 
-h3. 
+
