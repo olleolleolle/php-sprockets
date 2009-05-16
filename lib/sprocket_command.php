@@ -10,7 +10,6 @@
  * SprocketCommand Class
  * 
  * @author Kjell Bublitz
- * @version 0.1
  */
 class SprocketCommand {
 
