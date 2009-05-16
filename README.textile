@@ -45,7 +45,7 @@ h3. Interface
 $sprocket = new Sprocket($filePath, array(    
 	'contentType' => 'application/x-javascript',
 	'baseUri' => '/my/site/',
-	'baseJs' => '/js',
+	'baseFolder' => '/js',
 	'assetFolder' => '..',
 	'debugMode' => false,
 	'autoRender' => false
