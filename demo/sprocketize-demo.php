@@ -1,4 +1,5 @@
-<?php require_once('../lib/sprocket.php');
+<?php
+require_once '../lib/sprocket.php';
 
 // get path from request
 $filePath = preg_replace('/\?.*/', '', $_SERVER['REQUEST_URI']);
@@ -10,17 +11,14 @@ $sprocket = new Sprocket($filePath, array(
 ));
 
 // change base folder based on extension
-switch ($sprocket->fileExt) 
-{
+switch ($sprocket->fileExt) {
 	case 'css':
 		$sprocket->setContentType('text/css')->setBaseFolder('/css');
 		break;
-	
-	default: case 'js':
+	default: 
 		$sprocket->setBaseFolder('/js');
 		break;
 }
 
 // tada!
 $sprocket->render();
-?>

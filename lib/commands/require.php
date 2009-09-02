@@ -10,19 +10,16 @@
  * SprocketCommand : Require Class
  * 
  */
-class SprocketCommandRequire extends SprocketCommand 
-{	
+class SprocketCommandRequire extends SprocketCommand {	
 	/**
 	 * Command Exec
 	 * @return string Parse file
 	 */
-	function exec($param, $context) 
-	{
+	public function exec($param, $context) {
 		$source = '';
 		
 		// parse require params
-		if (preg_match('/\"([^\"]+)\" ([^\n]+)|\"([^\"]+)\"/', $param, $match)) // "param"
-		{	
+		if (preg_match('/\"([^\"]+)\" ([^\n]+)|\"([^\"]+)\"/', $param, $match)) { // "param"
 			if (count($match) == 3) {
 				$paramArg = $match[1];
 				$optionArg = $match[2];
@@ -43,14 +40,11 @@ class SprocketCommandRequire extends SprocketCommand
 					$source = $this->{$optionMethod}($source, $fileContext, $fileName);
 				}
 			}
-		} 
-		else if(preg_match('/\<([^\>]+)\>/', $param, $match)) // <param>
-		{
+		} else if(preg_match('/\<([^\>]+)\>/', $param, $match)) { // <param>
 			$fileName = $this->getFileName($context, $match[1]);
 			$fileContext = $this->Sprocket->baseFolder;
 			$source = $this->Sprocket->parseFile($fileName, $fileContext);
 		}
-		
 		return $source;
 	}
 	
@@ -60,22 +54,20 @@ class SprocketCommandRequire extends SprocketCommand
 	 * @param string $source
 	 * @return string
 	 */
-	function optionMinify($source, $context = null, $filename = null) 
-	{
+	public function optionMinify($source, $context = null, $filename = null) {
 		if ($this->Sprocket->fileExt == 'css') {
 			if (!class_exists('cssmin')) {
-				require_once(realpath(dirname(__FILE__).'/../third-party/'.MINIFY_CSS));
+				require_once realpath(dirname(__FILE__).'/../third-party/'.MINIFY_CSS);
 			}
 			$source = cssmin::minify($source, "preserve-urls");	
 		}
 		
 		if ($this->Sprocket->fileExt == 'js') {
 			if (!class_exists('JSMin')) {
-				require_once(realpath(dirname(__FILE__).'/../third-party/'.MINIFY_JS));
+				require_once realpath(dirname(__FILE__).'/../third-party/'.MINIFY_JS);
 			}
 			$source = JSMin::minify($source);	
 		}
-
 		return $source;
 	}
 }

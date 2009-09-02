@@ -5,7 +5,7 @@
  * @package sprocket
  * @subpackage libs
  */
-require_once('sprocket_command.php');
+require_once 'sprocket_command.php';
 
 // CSS Minify 
 define('MINIFY_CSS', 'cssmin-v1.0.1.b3.php');
@@ -26,7 +26,7 @@ class Sprocket
 	 * @param string $file Javascript file to use
 	 * @param array $options Sprocket settings
 	 */
-	function __construct($file, $options = array()) {
+	public function __construct($file, $options = array()) {
 		
 		$options = array_merge(array(
 			'baseUri' => '/php-sprockets',
@@ -185,7 +185,7 @@ class Sprocket
 	 * @return object
 	 */
 	function requireCommand($command) {
-		require_once(dirname(__FILE__).'/commands/'.$command.'.php');
+		require_once dirname(__FILE__).'/commands/'.$command.'.php';
 		$commandClass = 'SprocketCommand'.ucfirst($command);
 		$commandObject = new $commandClass($this);
 		return $commandObject;
@@ -300,69 +300,69 @@ class Sprocket
 	 * Base URI - Path to webroot
 	 * @var string
 	 */
-	var $baseUri = '';
+	public $baseUri = '';
 	
 	/**
 	 * Base JS - Relative location of the javascript folder
 	 * @var string
 	 */
-	var $baseFolder = '';
+	public $baseFolder = '';
 	
 	/**
 	 * File Path - Current file to parse
 	 * @var string
 	 */
-	var $filePath = '';
+	public $filePath = '';
 	
 	/**
 	 * File Extension
 	 * @var string
 	 */
-	var $fileExt = 'js';
+	public $fileExt = 'js';
 	
 	/**
 	 * Assets - Relative location of the assets folder
 	 * @var string
 	 */
-	var $assetFolder = '';
+	public $assetFolder = '';
 	
 	/**
 	 * Debug Option
 	 * @var boolean
 	 */ 
-	var $debugMode = false;	
+	public $debugMode = false;	
 	
 	/**
 	 * Source Content Type
 	 * @var string
 	 */
-	var $contentType = 'application/x-javascript';
+	public $contentType = 'application/x-javascript';
 	
 	/**
 	 * JS Source - Current Source 
 	 * @var string
 	 * @access private
 	 */
-	var $_parsedSource = '';
+	private $_parsedSource = '';
 	
 	/**
 	 * Scanned Const files
 	 * @var array
 	 * @access private
 	 */
-	var $_constantsScanned = array();
+	private $_constantsScanned = array();
 	
 	/**
 	 * Constants keys and values
 	 * @var array
 	 * @access private
 	 */
-	var $_constants = array();
+	private $_constants = array();
 	
 	/**
 	 * Source comes from cache
 	 * @var boolean
 	 * @access private
 	 */
-	var $_fromCache = false;	
+	private $_fromCache = false;	
 }
